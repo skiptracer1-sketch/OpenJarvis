@@ -43,23 +43,6 @@ from openjarvis.cli.vault_cmd import vault
 from openjarvis.cli.workflow_cmd import workflow
 
 
-def _register_agent_os_v1_preset() -> None:
-    """Extend ``jarvis init --preset`` with the fork's Agent OS starter."""
-    for param in init.params:
-        if param.name != "preset" or not isinstance(param.type, click.Choice):
-            continue
-        choices = list(param.type.choices)
-        if "agent-os-v1" not in choices:
-            param.type = click.Choice(
-                [*choices, "agent-os-v1"],
-                case_sensitive=param.type.case_sensitive,
-            )
-        return
-
-
-_register_agent_os_v1_preset()
-
-
 @click.group(
     help="OpenJarvis — modular AI assistant backend",
     invoke_without_command=True,
