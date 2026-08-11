@@ -1,6 +1,6 @@
 # Agent OS V1
 
-Agent OS V1 is a starter operating layer for OpenJarvis. It keeps OpenJarvis as the engine and packages its existing orchestrator, tools, skills, memory, traces, scheduler, workflows, and dashboard around a simple rule: one objective comes in, work is planned by role, and nothing is called complete until it is verified.
+Agent OS V1 is a starter operating layer for OpenJarvis. It keeps OpenJarvis as the engine and packages its existing orchestrator, tools, skills, memory, traces, scheduler, workflows, server/desktop surfaces, and local-first model stack around a simple rule: one objective comes in, work is planned by role, and nothing is called complete until it is verified.
 
 This V1 is intentionally small and upstream-friendly. It does not add a second orchestration runtime.
 
@@ -58,15 +58,17 @@ See [MEMORY.md](MEMORY.md) for the retention policy.
 
 ## Existing OpenJarvis capabilities to use with V1
 
-### Dashboard
+### Server and desktop surfaces
 
-Use the existing dashboard surface when you want a visual view of the running OpenJarvis system:
+Start the existing OpenJarvis API server when you want the browser/desktop client to connect to the Agent OS configuration:
 
 ```bash
-jarvis dashboard
+jarvis serve
 ```
 
-If your installed OpenJarvis build exposes the dashboard through a different surface, use the command shown by `jarvis --help`; Agent OS V1 does not replace the upstream dashboard.
+OpenJarvis also ships a desktop GUI through its normal release/install path. Agent OS V1 reuses those surfaces rather than adding a separate command-center application in this phase.
+
+The repository contains a terminal dashboard component as well, but V1 does not invent a CLI command for it when the current upstream command registry does not expose one.
 
 ### Skills
 
