@@ -1,0 +1,43 @@
+# Agent OS V1 — coordinated, local-first multi-role operating preset
+# Install with: jarvis init --preset agent-os-v1
+# Start with:   jarvis ask "Objective: <what you want accomplished>"
+#
+# V1 reuses OpenJarvis's existing orchestrator, tools, memory, skills,
+# traces, MCP integrations, dashboard, and scheduler rather than adding
+# a second orchestration runtime.
+
+[engine]
+default = "ollama"
+
+[intelligence]
+default_model = "qwen3.5:9b"
+temperature = 0.2
+
+[agent]
+default_agent = "orchestrator"
+max_turns = 20
+context_from_memory = true
+objective = "Act as Commander for Agent OS V1. Convert the user's objective into a concise plan, assign work using the Researcher, Builder, Operator, Verifier, and Memory Keeper role contracts, use available tools and skills, require verification before declaring completion, store only durable useful memory, and report completed work, blockers, and the next best action."
+
+[tools]
+enabled = ["knowledge_search", "knowledge_sql", "scan_chunks", "memory_store", "memory_search", "code_interpreter", "file_read", "file_write", "shell_exec", "web_search", "think", "calculator"]
+
+[tools.storage]
+default_backend = "sqlite"
+db_path = "~/.openjarvis/memory.db"
+
+[tools.mcp]
+enabled = true
+
+[telemetry]
+enabled = true
+db_path = "~/.openjarvis/telemetry.db"
+
+[traces]
+enabled = true
+db_path = "~/.openjarvis/traces.db"
+
+[server]
+host = "127.0.0.1"
+port = 8000
+agent = "orchestrator"
